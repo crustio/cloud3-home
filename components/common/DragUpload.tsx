@@ -2,12 +2,13 @@ import classNames from "classnames";
 import CloseBtnSvg from "@public/images/close_btn.svg";
 import {ProgressBar} from "@components/common/ProgressBar";
 import {openExtUrl} from "@lib/utils";
-import {GatewayBase} from "@lib/config";
+import {docsUrl, GatewayBase} from "@lib/config";
 import React, {useEffect, useRef, useState} from "react";
 import axios, {CancelTokenSource} from "axios";
 import {upload} from "@lib/files";
 import {UploadRes} from "@components/pages/home/SectionTop";
 import {useToast} from "@lib/hooks/useToast";
+import { DomainRef } from "@lib/hooks/useConfigDomain";
 
 interface IProps{
   className?: string,
@@ -171,12 +172,12 @@ export function DragUpload(p:IProps){
                     Get download link for this file
                   </div>
                   <div className="underline" onClick={()=>openExtUrl(`https://ipfs-scan.io/?cid=${uploadFileInfo.Hash}`)}>Verify on IPFS</div>
-                  <div className="mr-5 w-1/2 underline" onClick={()=>openExtUrl(`https://docs.crustcloud.io`)}>
+                  <div className="mr-5 w-1/2 underline" onClick={()=>openExtUrl(docsUrl())}>
                     Learn more about Crust Cloud's storage solution
                   </div>
                   <div
                     onClick={() =>
-                      openExtUrl("http://test.crustcloud.io/#/buckets")
+                      openExtUrl(`http://test.${DomainRef.value}/#/buckets`)
                     }
                     className="underline"
                   >

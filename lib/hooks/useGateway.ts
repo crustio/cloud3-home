@@ -11,10 +11,10 @@ export interface UseGateway {
 
 function getCurrent() {
   const lastValue = localStorage.getItem("last_gateway");
-  const last = GatewayList.find((item) => item.value === lastValue);
+  const last = GatewayList().find((item) => item.value === lastValue);
   console.info("last-:", last);
   if (last) return last;
-  return GatewayList[0];
+  return GatewayList()[0];
 }
 export function useGateway(): UseGateway {
   const {
@@ -29,5 +29,5 @@ export function useGateway(): UseGateway {
     oUpdate({ currentGateway: item });
     localStorage.setItem('last_gateway', item.value)
   });
-  return { list: GatewayList, setCurrent, current };
+  return { list: GatewayList(), setCurrent, current };
 }

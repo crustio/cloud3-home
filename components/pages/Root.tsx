@@ -1,16 +1,17 @@
 import { AppLoading } from "@components/common/AppLoading";
 import { Toasts } from "@components/common/Toast";
+import { useSetDomain } from "@lib/hooks/useConfigDomain";
 import { StoreProvider, useInitStore } from "@lib/store/store";
 import React from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import ReactTooltip from "react-tooltip";
 import Home from "./home/Home";
+import { Admin } from "./main/Admin";
 import { Bucket } from "./main/Bucket";
 import { Buckets } from "./main/Buckets";
 import { Mint } from "./main/Mint";
 import { Setting } from "./main/Setting";
 import { Providers } from "./Providers";
-import { Admin } from "./main/Admin";
 
 function WrapStoreProvider({ children }: { children: React.ReactNode }) {
   const store = useInitStore();
@@ -19,6 +20,7 @@ function WrapStoreProvider({ children }: { children: React.ReactNode }) {
 
 export default React.memo(() => {
   console.info("Root:", new Date().getTime());
+  useSetDomain();
   return (
     <Providers>
       <WrapStoreProvider>

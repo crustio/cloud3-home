@@ -182,7 +182,7 @@ export function ipfsUrl(cid: string) {
   return `${GatewayBase}/ipfs/${cid}`;
 }
 export function ipnsUrl(ipns: string) {
-  return `${GatewayList[0].value}/ipns/${ipns}`;
+  return `${GatewayList()[0].value}/ipns/${ipns}`;
 }
 export function randomNum(Min, Max) {
   let Range = Max - Min;

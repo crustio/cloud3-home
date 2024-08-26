@@ -1,18 +1,19 @@
 import { AxiosResponse } from "axios";
 import { IS_DEV, IS_TEST } from "./env";
 import { W3BucketMetadata } from "./type";
+import { DomainRef } from "./hooks/useConfigDomain";
 
 export function genUrl(path: `/${string}`) {
-  let base = "https://api.crustcloud.io";
-  if (IS_DEV) base = "https://beta-api.crustcloud.io";
-  if (IS_TEST) base = "https://test-api.crustcloud.io";
+  let base = `https://api.${DomainRef.value}`;
+  if (IS_DEV) base = `https://beta-api.${DomainRef.value}`;
+  if (IS_TEST) base = `https://test-api.${DomainRef.value}`;
   return `${base}${path}`;
 }
 
-export function pinUrl(path: `/${string}`){
-  let base = "https://pin.crustcloud.io";
-  if (IS_DEV) base = "https://beta-pin.crustcloud.io";
-  if (IS_TEST) base = "https://test-pin.crustcloud.io";
+export function pinUrl(path: `/${string}`) {
+  let base = `https://pin.${DomainRef.value}`;
+  if (IS_DEV) base = `https://beta-pin.${DomainRef.value}`;
+  if (IS_TEST) base = `https://test-pin.${DomainRef.value}`;
   return `${base}${path}`;
 }
 

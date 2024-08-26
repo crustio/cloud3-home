@@ -2,6 +2,8 @@ import {Modal} from "@components/modals/Modal";
 import {CommonModalClose} from "@components/pages/home/component/CommonModalClose";
 import React from "react";
 import {BucketCode} from "@components/common/BucketCode";
+import { DomainRef } from "@lib/hooks/useConfigDomain";
+import { docsUrl } from "@lib/config";
 
 interface IProps{
   onClose: any
@@ -39,7 +41,7 @@ import { MdEditor } from '@cloud3/vue-widgets'
     <Modal className="p-0">
       <div className="bg-white min-w-[56rem] flex flex-col relative p-6">
         <div className="flex justify-between items-center mb-6">
-          <a className="text-2xl underline text-black-1" href="https://docs.crustcloud.io" target="_blank">Dev Guidance</a>
+          <a className="text-2xl underline text-black-1" href={docsUrl()} target="_blank">Dev Guidance</a>
           <CommonModalClose className="mt-[-0.3rem]" onClose={()=>onClose && onClose()} />
         </div>
         <div>

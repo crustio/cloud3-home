@@ -5,6 +5,8 @@ import {openExtUrl } from "@lib/utils";
 import React, {useState} from "react";
 import {useOnce} from "@react-spring/shared";
 import { IconCloud3 } from "@components/common/icons";
+import { DomainRef } from "@lib/hooks/useConfigDomain";
+import { docsUrl } from "@lib/config";
 
 export interface UploadRes {
   Hash: string;
@@ -40,7 +42,7 @@ export const SectionTop = React.memo(() => {
                 <Button
                   text="Documentations"
                   className="btn-173 border-white text-white"
-                  onClick={()=>openExtUrl('https://docs.crustcloud.io/')}
+                  onClick={()=>openExtUrl(docsUrl())}
                 />
                 <Button
                   text="Launch App"

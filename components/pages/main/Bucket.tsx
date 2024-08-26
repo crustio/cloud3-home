@@ -26,7 +26,7 @@ import { useOnce } from "@react-spring/shared";
 import { genUrl, pinUrl } from "@lib/http";
 import { useToast } from "@lib/hooks/useToast";
 import { useAccount } from "wagmi";
-import { GatewayBaseBucket } from "@lib/config";
+import { docsUrl, GatewayBaseBucket } from "@lib/config";
 import algoWallet from "@lib/algorand/algoWallet";
 import algodClient from "@lib/algorand/algodClient";
 
@@ -62,10 +62,10 @@ curl -X POST '${pinUrl("/psa/pins")}' \
           <BucketCode code={code} />
           <div className=" mt-8 text-xl font-medium">Get more references</div>
           <div className=" mt-4 flex flex-wrap">
-            <a className=" underline text-black-1 mr-5" target="_blank" href="https://docs.crustcloud.io/w3bucket/aboutnft">
+            <a className=" underline text-black-1 mr-5" target="_blank" href={`${docsUrl()}/w3bucket/aboutnft`}>
               General Guidance on W3Bucket
             </a>
-            <a className=" underline text-black-1 mr-5" target="_blank" href="https://docs.crustcloud.io/w3bucket/uploadfile">
+            <a className=" underline text-black-1 mr-5" target="_blank" href={`${docsUrl()}/w3bucket/uploadfile`}>
               Using APIs and W3Auth
             </a>
           </div>

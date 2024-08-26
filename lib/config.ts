@@ -1,6 +1,7 @@
 import { IS_TEST } from "@lib/env";
 import * as chain from "wagmi/chains";
 import { IS_DEV } from "./env";
+import { DomainRef } from "./hooks/useConfigDomain";
 
 export const GA_ID = IS_DEV ? "-" : "-";
 export let W3Bucket_Adress: `0x${string}` = "0x";
@@ -50,11 +51,11 @@ export interface AuthIpfsEndpoint {
   value: string;
 }
 
-export const GatewayList: AuthIpfsEndpoint[] = [
+export const GatewayList = (): AuthIpfsEndpoint[] => [
   {
     location: "Seattle, US",
     name: "Thunder Gateway",
-    value: "https://gw-seattle.crustcloud.io",
+    value: `https://gw-seattle.${DomainRef.value}`,
   },
 ];
 // 'https://ipfs-gw.decloud.foundation'
@@ -64,10 +65,11 @@ export const GatewayBase = "https://cf-ipfs.com";
 // for BucketGatewayBase
 export const GatewayBaseBucket = "https://ipfsgw.live";
 
-
 export const ChainIcon = {
   [chain.mainnet.id]: "/images/chain/ethereum.png",
   [chain.arbitrum.id]: "/images/chain/arbitrum.png",
   [chain.base.id]: "/images/chain/base.png",
   [chain.optimism.id]: "/images/chain/optimism.png",
-}
+};
+
+export const docsUrl = () => `https://docs.${DomainRef.value}`;

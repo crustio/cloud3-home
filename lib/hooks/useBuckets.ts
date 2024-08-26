@@ -9,16 +9,17 @@ import { W3BucketMetadata } from "@lib/type";
 import { sumBy } from "lodash";
 import algoWallet from "@lib/algorand/algoWallet";
 import algodClient from "@lib/algorand/algodClient";
+import { DomainRef } from "./useConfigDomain";
 
 export async function getFileHistory(ipns: string) {
   try {
     const cid = (
       await axios.get<{ Path: string }>(
-        `${GatewayList[0].value}/api/v0/name/resolve?arg=${ipns}`
+        `${GatewayList()[0].value}/api/v0/name/resolve?arg=${ipns}`
       )
     ).data;
     const fileList = (
-      await axios.get<any[]>(`https://gw-seattle.crustcloud.io${cid.Path}`)
+      await axios.get<any[]>(`https://gw-seattle.${DomainRef.value}${cid.Path}`)
     ).data;
     return fileList;
   } catch (error) {
@@ -43,7 +44,7 @@ export function useBuckets() {
           const tokenUri = await w3b.tokenURI(tokenId);
           const metadata = (
             await axios.get<W3BucketMetadata>(
-              tokenUri.replace("ipfs://", `${GatewayList[0].value}/ipfs/`)
+              tokenUri.replace("ipfs://", `${GatewayList()[0].value}/ipfs/`)
             )
           ).data;
           const ipns = metadata.file_history.replace("ipns://", "");
@@ -91,7 +92,7 @@ export async function getAlgoBuckets() {
     const tokenUri = tokenInfo['params']['url'];
     const metadata = (
       await axios.get<W3BucketMetadata>(
-        tokenUri.replace("ipfs://", `${GatewayList[0].value}/ipfs/`)
+        tokenUri.replace("ipfs://", `${GatewayList()[0].value}/ipfs/`)
       )
     ).data;
     const ipns = metadata.file_history.replace("ipns://", "");

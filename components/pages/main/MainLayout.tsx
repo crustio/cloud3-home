@@ -4,7 +4,7 @@ import { Logo } from "@components/common/Logo";
 import { IconSetting } from "@components/common/icons";
 import { ConnectWallet } from "@components/modals/ConnectWallet";
 import algoWallet from "@lib/algorand/algoWallet";
-import { ChainIcon, SupportChain } from "@lib/config";
+import { ChainIcon, docsUrl, SupportChain } from "@lib/config";
 import { IS_DEV, IS_TEST } from "@lib/env";
 import { useOn } from "@lib/hooks/tools";
 import { useConnected } from "@lib/hooks/useConnected";
@@ -60,7 +60,7 @@ export const MainLayout = React.memo((p: { menuId: number; tit?: React.ReactNode
         id: 3,
         icon: "cru-fo-homework",
         text: "Docs",
-        url: "https://docs.crustcloud.io",
+        url: docsUrl(),
       },
     ];
     if (showAdmin) {
