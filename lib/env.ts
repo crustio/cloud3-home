@@ -1,4 +1,4 @@
-const ENV: "dev" | "prod" | "test" = "prod";
+const ENV: "dev" | "prod" | "test" = process.env.NEXT_PUBLIC_ENV as any || 'prod';
 
 // @ts-ignore
 export const IS_DEV = ENV == 'dev';
