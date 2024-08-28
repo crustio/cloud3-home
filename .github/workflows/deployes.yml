@@ -26,12 +26,11 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: |
-            .next
             .yarn/cache
             ./node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn2-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-yarn2-
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -67,12 +66,11 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: |
-            .next
             .yarn/cache
             ./node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn2-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-yarn2-
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -108,12 +106,11 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: |
-            .next
             .yarn/cache
             ./node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn2-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-yarn2-
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -146,12 +143,11 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: |
-            .next
             .yarn/cache
             ./node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn2-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-yarn2-
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
