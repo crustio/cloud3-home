@@ -154,7 +154,7 @@ function PreMetadata(p: { onContinue: OnNext }) {
         const imageArrayBuffer = await imageblob.arrayBuffer();
         const imageBuffer = Buffer.from(imageArrayBuffer);
         const imageIntegrity = getSHA256Digest(imageBuffer);
-        await pinCID(image.Hash, "bucket_image.png");
+        // await pinCID(image.Hash, "bucket_image.png");
         const res = await axios.post<Res<void>>(
           genUrl("/auth/bucket/metadata/generate"),
           { uuid: mintData.uuid, cid: image.Hash, imageIntegrity },
