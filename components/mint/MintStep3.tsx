@@ -198,7 +198,7 @@ export const MintStep3 = React.memo((p: MintStep3Props) => {
         if (taskRes && taskRes.tokenId && taskRes.mintTxHash) {
           break;
         }
-        await sleep(10000);
+        await sleep(3000);
       }
       updateMint({ mintTx: taskRes.mintTxHash, tokenId: taskRes.tokenId });
       onNext();

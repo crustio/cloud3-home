@@ -44,7 +44,6 @@ export const Mint = React.memo(() => {
         updateMint({
           metadata: mintstate.metadata,
           ipns: mintstate.ipnsId,
-          metadataTX: mintstate.metadataTxHash,
           metadataCID: mintstate.metadataCid,
           mintTx: mintstate.mintTxHash,
           tokenId: mintstate.tokenId,
@@ -52,7 +51,7 @@ export const Mint = React.memo(() => {
         });
         if (mintstate.mintTxHash) {
           setStep(2);
-        } else if (mintstate.metadataTxHash) {
+        } else if (mintstate.mintState >= 3) {
           setStep(1);
         } else {
           setStep(0);
