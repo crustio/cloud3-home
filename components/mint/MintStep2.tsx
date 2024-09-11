@@ -167,14 +167,14 @@ function PreMetadata(p: { onContinue: OnNext }) {
         let taskRes: MintState = null;
         while (true) {
           if (!refSafe.safe) break;
-          await sleep(10000);
+          await sleep(2000);
           taskRes = await axios
             .get<Res<MintState>>(genUrl(`/auth/bucket/uuid/${mintData.uuid}`), {
               headers: { Authorization: `Bearer ${auth}` },
             })
             .then(getResData)
             .catch(() => null);
-          if (taskRes && taskRes.metadataTxHash) {
+          if (taskRes && taskRes.mintState >= 3) {
             break;
           }
         }
@@ -182,7 +182,6 @@ function PreMetadata(p: { onContinue: OnNext }) {
         updateMint({
           metadata: taskRes.metadata,
           metadataCID: taskRes.metadataCid,
-          metadataTX: taskRes.metadataTxHash,
         });
       } catch (error) {
         console.error(error);
@@ -224,12 +223,6 @@ function PreMetadata(p: { onContinue: OnNext }) {
                 </div>
                 <TupleInfo
                   data={["IPFS CID", shortStr(mintData.metadataCID, 10, 10)]}
-                />
-                <TupleInfo
-                  data={[
-                    "Crust Network Storage Order TXID",
-                    shortStr(mintData.metadataTX, 10, 10),
-                  ]}
                 />
                 <TupleInfo data={["IPNS", shortStr(mintData.ipns, 10, 10)]} />
                 <TupleInfo data={["Storage Protocol", "Crust"]} />
@@ -304,7 +297,7 @@ export const MintStep2 = React.memo((p: MintStep2Props) => {
                 {
                   bucketInfo: JSON.stringify({
                     chainId: mintData.chainId,
-                    editionId: mintData.editionId 
+                    editionId: mintData.editionId
                   })
                 },
                 {
