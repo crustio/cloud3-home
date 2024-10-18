@@ -1,14 +1,13 @@
-import { createVerifiedFetch, VerifiedFetch } from "@helia/verified-fetch";
+// import * as VF from "@helia/verified-fetch";
 import { GatewayBase } from "@lib/config";
 import { CSSProperties } from "react";
 import { useAsyncRetry } from "react-use";
 
-let verifiedFetch: VerifiedFetch;
-
 export function IpfsImage(p: { className?: string; style?: CSSProperties; cid: string }) {
   const res = useAsyncRetry(async () => {
-    if (!verifiedFetch) verifiedFetch = await createVerifiedFetch({ gateways: [GatewayBase, "https://gw.crust-gateway.com", "https://gw.crust-gateway.xyz"] });
-    const response = await verifiedFetch(p.cid.startsWith("ipfs://") ? p.cid : `ipfs://${p.cid}`, {});
+    const gateways = [GatewayBase, "https://gw.crust-gateway.com", "https://gw.crust-gateway.xyz"];
+    const mcid = p.cid.startsWith("ipfs://") ? p.cid.replace("ipfs://", "") : p.cid;
+    const response = await Promise.race(gateways.map((gateway) => fetch(`${gateway}/ipfs/${mcid}`)));
     const blob = await response.blob();
     return URL.createObjectURL(blob);
   }, [p.cid]);

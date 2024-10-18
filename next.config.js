@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   experimental: {
     // ssr and displayName are configured by default
     fontLoaders: [{

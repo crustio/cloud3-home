@@ -27,3 +27,6 @@ yarn-error.log*
 /.fleet
 /.vscode
 .yarn/cache
+
+# React Component Preview
+previewConfig.json
