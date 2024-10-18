@@ -67,5 +67,5 @@ export function useW3BucketAbi() {
         "setBucketEditionPrices"
       ),
     };
-  }, [pc, pc.chain?.id, writeContractAsync]);
+  }, [pc, pc?.chain?.id, writeContractAsync]);
 }

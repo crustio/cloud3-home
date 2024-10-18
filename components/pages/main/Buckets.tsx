@@ -16,6 +16,7 @@ import { useAccount } from "wagmi";
 import { MainLayout } from "./MainLayout";
 import classnames from "classnames";
 import algoWallet from "@lib/algorand/algoWallet";
+import { IpfsImage } from "@components/common/IpfsImage";
 
 const BucketCard = React.memo((p: { data: BucketDTO; className?: string }) => {
   const { data, className } = p;
@@ -31,7 +32,8 @@ const BucketCard = React.memo((p: { data: BucketDTO; className?: string }) => {
   };
   return (
     <div className={classnames("h-min p-5 md:p-2 border border-solid border-black-1", className)}>
-      <img className="w-full aspect-[360/531] object-contain" src={ipfsUrl(data.metadata.image.replace("ipfs://", ""))} />
+      {/* <img className="w-full aspect-[360/531] object-contain" src={ipfsUrl(data.metadata.image.replace("ipfs://", ""))} /> */}
+      <IpfsImage className="w-full aspect-[360/531] object-contain" cid={data.metadata.image}/>
       <div className=" text-lg font-semibold mt-[0.625rem] truncate">{`W3BUCKET(${bucketId})`}</div>
       <div className="flex text-sm my-[2px] justify-between">
         <div>Current Usage</div>
