@@ -50,7 +50,7 @@ export interface AuthIpfsEndpoint {
   location?: string;
   value: string;
 }
-
+// for upload 
 export const GatewayList = (): AuthIpfsEndpoint[] => [
   {
     location: "Seattle, US",
@@ -61,6 +61,8 @@ export const GatewayList = (): AuthIpfsEndpoint[] => [
 // 'https://ipfs-gw.decloud.foundation'
 export const DeCloudLink = "https://crustipfs.xyz";
 export const GatewayBase = "https://gw.crustgw.work";
+export const GatewayBase2 = "https://gw-seattle.crust-gateway.com";
+
 
 // for BucketGatewayBase
 export const GatewayBaseBucket = "https://ipfsgw.live";

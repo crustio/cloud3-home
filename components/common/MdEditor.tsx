@@ -46,17 +46,17 @@ import {
 
 import data from "svgmoji/emoji.json";
 
-import { loopCheckCID, pinCID, upload } from "@lib/files";
+import { GatewayBase } from "@lib/config";
+import { pinCID, upload } from "@lib/files";
 import { preloadIMG, shortStr } from "@lib/utils";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { ethers } from "ethers";
+import { CID } from "multiformats";
+import { sha256 } from "multiformats/hashes/sha2";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { Button } from "./Button";
 import { Icon } from "./Icon";
 import { ProgressBar } from "./ProgressBar";
-import { CID } from "multiformats";
-import { sha256 } from "multiformats/hashes/sha2";
-import { GatewayBase } from "@lib/config";
 
 import ReactDOM from 'react-dom';
 import { Loading } from "./Loading";

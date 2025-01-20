@@ -1,5 +1,5 @@
 import { BucketDTO } from "@lib/http";
-import { GatewayList, SupportChain } from "./../config";
+import { GatewayBase2, GatewayList, SupportChain } from "./../config";
 
 import axios from "axios";
 import { useAsync } from "react-use";
@@ -15,7 +15,7 @@ export async function getFileHistory(ipns: string) {
   try {
     const cid = (
       await axios.get<{ Path: string }>(
-        `${GatewayList()[0].value}/api/v0/name/resolve?arg=${ipns}`
+        `${GatewayBase2}/api/v0/name/resolve?arg=${ipns}`
       )
     ).data;
     const fileList = (
@@ -44,7 +44,7 @@ export function useBuckets() {
           const tokenUri = await w3b.tokenURI(tokenId);
           const metadata = (
             await axios.get<W3BucketMetadata>(
-              tokenUri.replace("ipfs://", `${GatewayList()[0].value}/ipfs/`)
+              tokenUri.replace("ipfs://", `${GatewayBase2}/ipfs/`)
             )
           ).data;
           const ipns = metadata.file_history.replace("ipns://", "");
@@ -92,7 +92,7 @@ export async function getAlgoBuckets() {
     const tokenUri = tokenInfo['params']['url'];
     const metadata = (
       await axios.get<W3BucketMetadata>(
-        tokenUri.replace("ipfs://", `${GatewayList()[0].value}/ipfs/`)
+        tokenUri.replace("ipfs://", `${GatewayBase2}/ipfs/`)
       )
     ).data;
     const ipns = metadata.file_history.replace("ipns://", "");

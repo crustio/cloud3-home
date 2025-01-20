@@ -1,4 +1,4 @@
-import { AlgorandExplorerUrl, GatewayBase, GatewayList, SupportChain, W3Bucket_Adress} from "@lib/config";
+import { AlgorandExplorerUrl, GatewayBase, GatewayBase2, GatewayList, SupportChain, W3Bucket_Adress} from "@lib/config";
 import BN from "bn.js";
 import classNames, {Argument} from "classnames";
 import isMobile from "ismobilejs";
@@ -179,10 +179,10 @@ export function formatFileSize(
 }
 
 export function ipfsUrl(cid: string) {
-  return `${GatewayBase}/ipfs/${cid}`;
+  return `${GatewayBase2}/ipfs/${cid}`;
 }
 export function ipnsUrl(ipns: string) {
-  return `${GatewayList()[0].value}/ipns/${ipns}`;
+  return `${GatewayBase2}/ipns/${ipns}`;
 }
 export function randomNum(Min, Max) {
   let Range = Max - Min;
