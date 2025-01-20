@@ -1,15 +1,14 @@
 import { BucketDTO } from "@lib/http";
-import { GatewayBase2, GatewayList, SupportChain } from "./../config";
+import { GatewayBase2, SupportChain } from "./../config";
 
+import algoWallet from "@lib/algorand/algoWallet";
+import algodClient from "@lib/algorand/algodClient";
+import { W3BucketMetadata } from "@lib/type";
 import axios from "axios";
+import { sumBy } from "lodash";
 import { useAsync } from "react-use";
 import { useAccount } from "wagmi";
 import { useW3BucketAbi } from "./useW3BucketAbi";
-import { W3BucketMetadata } from "@lib/type";
-import { sumBy } from "lodash";
-import algoWallet from "@lib/algorand/algoWallet";
-import algodClient from "@lib/algorand/algodClient";
-import { DomainRef } from "./useConfigDomain";
 
 export async function getFileHistory(ipns: string) {
   try {
@@ -19,7 +18,7 @@ export async function getFileHistory(ipns: string) {
       )
     ).data;
     const fileList = (
-      await axios.get<any[]>(`https://gw-seattle.${DomainRef.value}${cid.Path}`)
+      await axios.get<any[]>(`${GatewayBase2}/${cid.Path}`)
     ).data;
     return fileList;
   } catch (error) {
