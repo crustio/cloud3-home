@@ -19,9 +19,21 @@ export function setW3BucketAddress(chainId: number) {
   W3Bucket_Adress = chainId2ContractAddress.get(chainId);
 }
 
-export const SupportChain = [chain.goerli, chain.arbitrumGoerli, chain.mainnet, chain.arbitrum, chain.base, chain.optimism].filter(
-  (chain) => (IS_DEV || IS_TEST ? true : !chain.testnet)
-);
+export const SupportChain = [
+  chain.goerli,
+  chain.arbitrumGoerli,
+  {
+    ...chain.mainnet,
+    rpcUrls: {
+      default: {
+        http: ["https://eth-mainnet.public.blastapi.io", "https://eth.drpc.org"],
+      },
+    },
+  },
+  chain.arbitrum,
+  chain.base,
+  chain.optimism,
+].filter((chain) => (IS_DEV || IS_TEST ? true : !chain.testnet));
 
 export const SupportId2Chain = (() => {
   const res = new Map();
@@ -50,7 +62,7 @@ export interface AuthIpfsEndpoint {
   location?: string;
   value: string;
 }
-// for upload 
+// for upload
 export const GatewayList = (): AuthIpfsEndpoint[] => [
   {
     location: "Seattle, US",
@@ -62,7 +74,6 @@ export const GatewayList = (): AuthIpfsEndpoint[] => [
 export const DeCloudLink = "https://crustipfs.xyz";
 export const GatewayBase = "https://gw.crustgw.work";
 export const GatewayBase2 = "https://gw-seattle.crust-gateway.com";
-
 
 // for BucketGatewayBase
 export const GatewayBaseBucket = "https://ipfsgw.live";
