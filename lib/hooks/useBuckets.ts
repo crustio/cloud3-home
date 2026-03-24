@@ -1,5 +1,5 @@
 import { BucketDTO } from "@lib/http";
-import { GatewayBase2, SupportChain } from "./../config";
+import { GatewayBase2, GatewayIPNS, SupportChain } from "./../config";
 
 import algoWallet from "@lib/algorand/algoWallet";
 import algodClient from "@lib/algorand/algodClient";
@@ -13,8 +13,8 @@ import { useW3BucketAbi } from "./useW3BucketAbi";
 export async function getFileHistory(ipns: string) {
   try {
     const cid = (
-      await axios.get<{ Path: string }>(
-        `${GatewayBase2}/api/v0/name/resolve?arg=${ipns}`
+      await axios.post<{ Path: string }>(
+        `${GatewayIPNS()}/api/v0/name/resolve?arg=${ipns}`
       )
     ).data;
     const fileList = (

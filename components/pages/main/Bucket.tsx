@@ -26,7 +26,7 @@ import { useOnce } from "@react-spring/shared";
 import { genUrl, pinUrl } from "@lib/http";
 import { useToast } from "@lib/hooks/useToast";
 import { useAccount } from "wagmi";
-import { docsUrl, GatewayBase2, GatewayBaseBucket } from "@lib/config";
+import { docsUrl, GatewayBase2, GatewayBaseBucket, GatewayIPNS } from "@lib/config";
 import algoWallet from "@lib/algorand/algoWallet";
 import algodClient from "@lib/algorand/algodClient";
 
@@ -140,7 +140,7 @@ export const Bucket = React.memo(() => {
       params: {
         arg: ipnsId,
       },
-      url: `${GatewayBase2}/api/v0/name/resolve`,
+      url: `${GatewayIPNS()}/api/v0/name/resolve`,
     });
     const filesRes = await axios.request({
       url: `${GatewayBase2}${pathRes.data.Path}`,
